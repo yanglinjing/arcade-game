@@ -9,7 +9,7 @@
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
  *
- * This engine makes the canvas' context (ctx) object globally available to make 
+ * This engine makes the canvas' context (ctx) object globally available to make
  * writing app.js a little simpler to work with.
  */
 
@@ -27,6 +27,8 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
+    //<canvas> 是 HTML5 新增的元素，可用于通过使用JavaScript中的脚本来绘制图形。
+    //例如，它可以用于绘制图形，制作照片，创建动画，甚至可以进行实时视频处理或渲染。
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -40,12 +42,13 @@ var Engine = (function(global) {
          */
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
+            //现在时间 - 网页刷新时的时间 （毫秒）
 
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
         update(dt);
-        render();
+        render(); //绘图
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -64,7 +67,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        lastTime = Date.now();
+        lastTime = Date.now(); //网页刷新时的时间
         main();
     }
 
@@ -97,8 +100,8 @@ var Engine = (function(global) {
     }
 
     /* This function initially draws the "game level", it will then call
-     * the renderEntities function. Remember, this function is called every
-     * game tick (or loop of the game engine) because that's how games work -
+     * the renderEntities function. Remember, this function is called 【every
+     * game tick】 (or loop of the game engine) because that's how games work -
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
@@ -117,7 +120,7 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height)
 
@@ -128,13 +131,15 @@ var Engine = (function(global) {
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
-                 * requires 3 parameters: the image to draw, the x coordinate
-                 * to start drawing and the y coordinate to start drawing.
+                 * requires 3 parameters: the image to draw, the 【x coordinate】
+                 * to start drawing and the 【y coordinate】 to start drawing.
+                 *
                  * We're using our Resources helpers to refer to our images
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                //格子宽度101 高度83
             }
         }
 

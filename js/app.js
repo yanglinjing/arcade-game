@@ -6,33 +6,35 @@ Enemy 函数，它通过以下操作初始化 Enemy：
 */
 
 // 敌人：玩家需要躲避！Enemies: our player must avoid
-var Enemy = function() {
-    // The image/sprite for our enemies, this uses敌人的图片
+var Enemy = function(x, y, speed) {
+
+    // The image/sprite for our enemies, this uses 敌人的图片
     this.sprite = 'images/enemy-bug.png';
 
-    // Variables applied to each of our instances go here,运用到实例的变量
-    this.location = ;
-    this.speed = ;
+    // Variables applied to each of our instances go here 运用到实例的变量
+    this.x = x; //初始x应该都是一样的？
+    this.y = y; //y始终是不变的
+    this.speed = speed;
 
 };
 
 /*
 Enemy 函数的 update 方法
-更新 Enemy 位置（需要由你执行）
-处理碰撞玩家的部分（需要由你执行）
+1. 更新 Enemy 位置（需要由你执行）
+2. 处理碰撞玩家的部分（需要由你执行）
  */
 
 // Update the enemy's position, required method for game更新敌人的位置
-// Parameter: dt, a time delta between ticks参数dt是时间的增量
+// Parameter: dt, a time delta between ticks 参数dt是时间变量（游戏已经开始了几秒）
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    // which will ensure the game runs at the same speed for all computers.
+    this.x = this.speed * dt; //而y值始终不变
 };
 
 // Draw the enemy on the screen, required method for game把敌人显示在屏幕上
-// ctx.drawImage() 方法有三个参数：一张图片、x 坐标和 y 坐标：
 Enemy.prototype.render = function() {
+    // ctx.drawImage() 方法有三个参数：一张图片、x 坐标和 y 坐标
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -40,33 +42,81 @@ Enemy.prototype.render = function() {
 //-----------------------player------------------------
 /*
 Player 函数，它通过以下操作初始化 Player：
-通过将 this.sprite 设为图片文件夹中的相应图片来加载图片（参考 Enemy 函数中的代码）
-设置 Player 初始位置
+1. 通过将 this.sprite 设为图片文件夹中的相应图片来加载图片（参考 Enemy 函数中的代码）
+2. 设置 Player 初始位置
 */
 
+// Now write your own player class 编写一个玩家的类
+var Player = function(x, y){
+    this.sprite = 'images/char-boy.png';
+    this.x = x;
+    this.y = y;
+}
+
 /*
-Player 函数的 update 方法（可以类似于 Enemy 的 update 方法）
-Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）
-handleInput 方法，应该接收用户输入；allowedKeys（按下的键），并根据该输入移动玩家。尤其是：
-向左键应该将玩家移到左边，向右键将玩家移到右边，向上键使玩家向上移动，向下键使玩家向下移动。
-注意，玩家不能离开屏幕（因此需要检查这种极端情况并相应地进行处理）。
-如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）。
+This class requires an update(), render() and a handleInput() method.
+包含三种方法：update, render, handleInput
  */
 
-// Now write your own player class 编写一个玩家的类
-// This class requires an update(), render() and 包含三种方法：update, render, handleInput
-// a handleInput() method.
+//Player 函数的 update 方法（可以类似于 Enemy 的 update 方法）???
+Player.prototype.update = function(){
+    this.x = ;
+    this.y = ;
+}
 
+//Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+/*handleInput 方法，应该接收用户输入；allowedKeys（按下的键），并根据该输入移动玩家。尤其是：
+1. 向左键应该将玩家移到左边，向右键将玩家移到右边，向上键使玩家向上移动，向下键使玩家向下移动。
+2. 注意，玩家不能离开屏幕（因此需要检查这种极端情况并相应地进行处理）。
+3. 如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）。
+*/
+var canvasX = canvas.getBoundingClientRect().left,
+    canvasY = canvas.getBoundingClientRect().top;
+
+Player.prototype.handleInput = function(key) {
+    //向左键应该将玩家移到左边，向右键将玩家移到右边，向上键使玩家向上移动，向下键使玩家向下移动。
+    //玩家不能离开屏幕
+    if (key==='left' || this.x >= (canvasX + 101)) {
+        this.x -= 101;
+    } else if (key==='up' || this.y >= (canvasY + 83)) {
+        this.y -= 83;
+        if (this.y === canvasY) { //抵达水域
+            win();
+        }
+    } else if (key==='right' || this.x <= (canvasX + 505)) {
+        this.x += 101;
+    } else if (key==='down' || this.y <= (canvasY + 83 * 6)) { //83*6还是606？
+        this.y += 83;
+    }
+    //格子宽101，高83
+    //canvas宽505，高606
+};
+
+//如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）
+function win(){
+    
+}
+
+
+//-------------------实例--------------------------
 /*
 执行完 Player 和 Enemy 后，你应该通过以下步骤实例化它们：
 
-创建新的 Player 对象
-创建多个 Enemy 对象并将它们放在叫做 allEnemies 的数组中
+1. 创建新的 Player 对象
+2. 创建多个 Enemy 对象并将它们放在叫做 allEnemies 的数组中
  */
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
-// Place the player object in a variable called player 把玩家对象放在一个叫player的数组
+var enemy = new Enemy();
+
+
+// Place the player object in a variable called player 把玩家对象放在一个叫player的变量
+var player = new Player();
 
 
 
@@ -81,6 +131,7 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+    //The 【KeyboardEvent.keyCode】 read-only property represents a system and implementation dependent 【numerical code】 identifying the unmodified value of the pressed key.键盘上的每一个按键都对应一个数字，即keyboardEvent.keyCode：比如‘上箭头’对应38，该数字是事件自动获取的。所以对象allowedKeys[38]会返回‘up’。
 });
 
 
