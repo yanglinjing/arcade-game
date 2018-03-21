@@ -29,7 +29,7 @@ Enemy 函数的 update 方法
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for all computers.
-    this.x = this.speed * dt; //而y值始终不变
+    this.x += this.speed * dt; //而y值始终不变
 };
 
 // Draw the enemy on the screen, required method for game把敌人显示在屏幕上
@@ -60,8 +60,7 @@ This class requires an update(), render() and a handleInput() method.
 
 //Player 函数的 update 方法（可以类似于 Enemy 的 update 方法）???
 Player.prototype.update = function(){
-    this.x = ;
-    this.y = ;
+
 }
 
 //Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）
@@ -74,22 +73,21 @@ Player.prototype.render = function() {
 2. 注意，玩家不能离开屏幕（因此需要检查这种极端情况并相应地进行处理）。
 3. 如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）。
 */
-var canvasX = canvas.getBoundingClientRect().left,
-    canvasY = canvas.getBoundingClientRect().top;
+
 
 Player.prototype.handleInput = function(key) {
     //向左键应该将玩家移到左边，向右键将玩家移到右边，向上键使玩家向上移动，向下键使玩家向下移动。
     //玩家不能离开屏幕
-    if (key==='left' || this.x >= (canvasX + 101)) {
+    if (key==='left' && this.x >= 101) {
         this.x -= 101;
-    } else if (key==='up' || this.y >= (canvasY + 83)) {
+    } else if (key==='up' && this.y >= 0) {
         this.y -= 83;
-        if (this.y === canvasY) { //抵达水域
+        if (this.y === -83) { //抵达水域
             win();
         }
-    } else if (key==='right' || this.x <= (canvasX + 505)) {
+    } else if (key==='right' && this.x <= 303) {
         this.x += 101;
-    } else if (key==='down' || this.y <= (canvasY + 83 * 6)) { //83*6还是606？
+    } else if (key==='down' && this.y <= (83 * 4)) {
         this.y += 83;
     }
     //格子宽101，高83
@@ -98,7 +96,7 @@ Player.prototype.handleInput = function(key) {
 
 //如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）
 function win(){
-    
+    alter('water!');
 }
 
 
@@ -111,12 +109,19 @@ function win(){
  */
 
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
-var enemy = new Enemy();
-
-
 // Place the player object in a variable called player 把玩家对象放在一个叫player的变量
-var player = new Player();
+var player = new Player(202, 405);
+
+
+// Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
+var allEnemies = [
+//row 1
+new Enemy(0, 62, 300),
+new Enemy(0, 62, 200),
+new Enemy(0, 62, 100),
+];
+
+
 
 
 
