@@ -12,11 +12,19 @@ var Enemy = function(y) {
     this.sprite = 'images/enemy-bug.png';
 
     // Variables applied to each of our instances go here 运用到实例的变量
-    this.x = randomInt(-150, -800); //
+    this.x = randomInt(-150, -800); //随机生成数字
     this.y = y; //y始终是不变的
     this.speed = randomInt(70, 130);
 
 };
+
+//得到一个两数之间的随机整数，包括两个数在内
+//来自：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function randomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 /*
 Enemy 函数的 update 方法
@@ -34,14 +42,15 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 800){ //让小虫子循环跑
         this.x = -400 + this.speed * dt;
     }
-    this.collision();
+    this.collision();//调用碰撞函数
 };
 
 //enmenies碰撞player的部分
+//2D_collision_detection来自：https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
 Enemy.prototype.collision = function() {
    if (this.x < player.x + 66 &&
        this.x + 97 > player.x &&
-       this.y < player.y + 76 &&
+       this.y < player.y + 70 &&
        this.y + 70 > player.y) {
           setTimeout(function(){
               console.log('catched!');
@@ -113,8 +122,6 @@ Player.prototype.handleInput = function (key) {
     return this.x, this.y;
 };
 
-
-
 //如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）
 function win(){
     console.log('win!');
@@ -148,16 +155,6 @@ new Enemy(228),
 new Enemy(228),
 new Enemy(228),
 ];
-
-//得到一个两数之间的随机整数，包括两个数在内
-//来自：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-function randomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
 
 // This listens for key presses and sends the keys to your 监听键盘按键，并把key传递到handleInput方法中
 // Player.handleInput() method. You don't need to modify this. 你无须更改此项
