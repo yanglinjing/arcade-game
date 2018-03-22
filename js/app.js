@@ -6,15 +6,15 @@ Enemy 函数，它通过以下操作初始化 Enemy：
 */
 
 // 敌人：玩家需要躲避！Enemies: our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(y) {
 
     // The image/sprite for our enemies, this uses 敌人的图片
     this.sprite = 'images/enemy-bug.png';
 
     // Variables applied to each of our instances go here 运用到实例的变量
-    this.x = x; //
+    this.x = randomInt(-150, -800); //
     this.y = y; //y始终是不变的
-    this.speed = speed;
+    this.speed = randomInt(70, 130);
 
 };
 
@@ -133,24 +133,29 @@ function win(){
 // Place the player object in a variable called player 把玩家对象放在一个叫player的变量
 var player = new Player();
 
-
 // Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
 var allEnemies = [
 //row 1
-new Enemy(-200, 62, 100),
-new Enemy(-800, 62, 80),
-new Enemy(-450, 62, 70),
+new Enemy(62),
+new Enemy(62),
+new Enemy(62),
 //row 2
-new Enemy(-300, 145, 90),
-new Enemy(-550, 145, 70),
-new Enemy(-800, 145, 80),
+new Enemy(145),
+new Enemy(145),
+new Enemy(145),
 //row 3
-new Enemy(-400, 228, 105),
-new Enemy(-150, 228, 85),
-new Enemy(-800, 228, 75),
+new Enemy(228),
+new Enemy(228),
+new Enemy(228),
 ];
 
-
+//得到一个两数之间的随机整数，包括两个数在内
+//来自：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function randomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 
