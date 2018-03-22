@@ -34,19 +34,28 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 800){ //让小虫子循环跑
         this.x = -400 + this.speed * dt;
     }
+    this.collision();
 };
+
+//enmenies碰撞player的部分
+Enemy.prototype.collision = function() {
+   if (this.x < player.x + 66 &&
+       this.x + 97 > player.x &&
+       this.y < player.y + 76 &&
+       this.y + 70 > player.y) {
+          setTimeout(function(){
+              console.log('catched!');
+              player.x = 202;
+              player.y = 405;
+          }, 200)
+   }
+}
 
 // Draw the enemy on the screen, required method for game把敌人显示在屏幕上
 Enemy.prototype.render = function() {
     // ctx.drawImage() 方法有三个参数：一张图片、x 坐标和 y 坐标
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-//enmenies碰撞player的部分
-Enemy.prototype.catch = function() {
-    
-}
-
 
 //-----------------------player------------------------
 /*
@@ -67,10 +76,10 @@ This class requires an update(), render() and a handleInput() method.
 包含三种方法：update, render, handleInput
  */
 
-//Player 函数的 update 方法（可以类似于 Enemy 的 update 方法）???
-Player.prototype.update = function(){
+//Player 函数的 update 方法(在engine.js第50行直接调用)
+Player.prototype.update = function(dt){
 
-}
+};
 
 //Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）
 Player.prototype.render = function() {
@@ -84,7 +93,7 @@ Player.prototype.render = function() {
 */
 
 
-Player.prototype.handleInput = function(key) {
+Player.prototype.handleInput = function (key) {
     //向左键应该将玩家移到左边，向右键将玩家移到右边，向上键使玩家向上移动，向下键使玩家向下移动。
     //玩家不能离开屏幕
     if (key==='left' && this.x >= 101) {
@@ -101,7 +110,10 @@ Player.prototype.handleInput = function(key) {
     }
     //格子宽101，高83
     //canvas宽505，高606
+    return this.x, this.y;
 };
+
+
 
 //如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）
 function win(){
@@ -154,8 +166,14 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
     //The 【KeyboardEvent.keyCode】 read-only property represents a system and implementation dependent 【numerical code】 identifying the unmodified value of the pressed key.键盘上的每一个按键都对应一个数字，即keyboardEvent.keyCode：比如‘上箭头’对应38，该数字是事件自动获取的。所以对象allowedKeys[38]会返回‘up’。
+
+    player.update();
+
 });
 
 
 //游戏引擎有一个 Resources 对象，它会缓存游戏所需的所有图片，因此在玩游戏期间无需等待加载。engine.js 中列举了可用图片
 //起始代码还可以使用很多其他图片。如果你想在游戏中使用这些图片，只需将它们添加到传递给 Resources.load() 方法（位于 engine.js 中）的数组中，并放至列表底部
+
+
+//暂停游戏if (!gamePause) {    updateEntities(dt);}

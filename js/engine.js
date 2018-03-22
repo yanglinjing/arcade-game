@@ -59,6 +59,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
+        //是专门做动画用的，该方法告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数（这里就是 main）来更新动画
     }
 
     /* This function does some initial setup that should only occur once,
