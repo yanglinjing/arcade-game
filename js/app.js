@@ -12,7 +12,7 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
 
     // Variables applied to each of our instances go here 运用到实例的变量
-    this.x = x; //初始x应该都是一样的？
+    this.x = x; //
     this.y = y; //y始终是不变的
     this.speed = speed;
 
@@ -30,6 +30,10 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for all computers.
     this.x += this.speed * dt; //而y值始终不变
+
+    if (this.x > 800){ //让小虫子循环跑
+        this.x = -400 + this.speed * dt;
+    }
 };
 
 // Draw the enemy on the screen, required method for game把敌人显示在屏幕上
@@ -37,6 +41,11 @@ Enemy.prototype.render = function() {
     // ctx.drawImage() 方法有三个参数：一张图片、x 坐标和 y 坐标
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+//enmenies碰撞player的部分
+Enemy.prototype.catch = function() {
+    
+}
 
 
 //-----------------------player------------------------
@@ -47,10 +56,10 @@ Player 函数，它通过以下操作初始化 Player：
 */
 
 // Now write your own player class 编写一个玩家的类
-var Player = function(x, y){
+var Player = function(){
     this.sprite = 'images/char-boy.png';
-    this.x = x;
-    this.y = y;
+    this.x = 202;
+    this.y = 405;
 }
 
 /*
@@ -82,7 +91,7 @@ Player.prototype.handleInput = function(key) {
         this.x -= 101;
     } else if (key==='up' && this.y >= 0) {
         this.y -= 83;
-        if (this.y === -83) { //抵达水域
+        if (this.y <= 0) { //抵达水域
             win();
         }
     } else if (key==='right' && this.x <= 303) {
@@ -96,7 +105,7 @@ Player.prototype.handleInput = function(key) {
 
 //如果玩家抵达水域，应该重置游戏，即将玩家移回初始位置（你可以编写单独的重置 Player 方法来处理这一情况）
 function win(){
-    alter('water!');
+    console.log('win!');
 }
 
 
@@ -110,15 +119,23 @@ function win(){
 
 // Now instantiate your objects.
 // Place the player object in a variable called player 把玩家对象放在一个叫player的变量
-var player = new Player(202, 405);
+var player = new Player();
 
 
 // Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
 var allEnemies = [
 //row 1
-new Enemy(0, 62, 300),
-new Enemy(0, 62, 200),
-new Enemy(0, 62, 100),
+new Enemy(-200, 62, 100),
+new Enemy(-800, 62, 80),
+new Enemy(-450, 62, 70),
+//row 2
+new Enemy(-300, 145, 90),
+new Enemy(-550, 145, 70),
+new Enemy(-800, 145, 80),
+//row 3
+new Enemy(-400, 228, 105),
+new Enemy(-150, 228, 85),
+new Enemy(-800, 228, 75),
 ];
 
 
