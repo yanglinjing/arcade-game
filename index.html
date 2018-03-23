@@ -12,9 +12,9 @@
       <img src="images/pause.svg" id="pause" class="available">
       <img src="images/refresh.svg" id="refresh" class="available">
 
-      <p>Score: <span id="score"></span></p>
+      <p>Score: <span class="score"></span></p>
 
-      <p>Time: <span id="mytime">00:00:00</span></p>
+      <p>Time: <span class="time">00:00:00</span></p>
 
       <p>Figure:</p>
 
@@ -27,9 +27,24 @@
         <option value="images/char-princess-girl.png">Royal-Crown</option>
       </select>
 
-
-
     </div>
+
+    <!--congratulations-->
+      <div id="congratulations" class="hideWindow">
+
+        <div>
+          <h2>Congratulations! You won!</h2>
+          <p>Your Score: <span class="score">0</span></p>
+          <p>Used Time: <span class="time">00:00</span></p>
+          <h3>Fantastic Job!</h3>
+        </div>
+
+        <div class="purpleButton">
+          <input id="replay" type="button" value="Play Again" />
+          <input id="close" type="button" value="Close" />
+        </div>
+
+      </div>
 
     <!--js-->
     <script src="js/resources.js"></script>

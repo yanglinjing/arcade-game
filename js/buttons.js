@@ -1,6 +1,6 @@
 myTime();
 
-var score = 100,
+var score = 100, //score在engin.js中的update中更新
     gamePause = false;
 
 //换头像???
@@ -39,6 +39,15 @@ document.getElementById('refresh').addEventListener('click', function(){
     window.location.reload();
 });
 
+//游戏结束界面
+
+document.getElementById('replay').addEventListener('click', function(){
+    window.location.reload();
+});
+
+document.getElementById('close').addEventListener('click', function(){
+    document.querySelector('#congratulations').setAttribute('class', 'hideWindow');
+});
 /*
  *网页计时器
  *来自:https://zhidao.baidu.com/question/2077864432758305548.html
@@ -53,7 +62,8 @@ function myTime() {
         date.setSeconds(sec);
         let h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
         time = two_char(h) + ":" + two_char(m) + ":" + two_char(s);
-        document.getElementById("mytime").innerText = time; //网页元素
+
+        document.querySelector(".time").innerText = time; //网页元素
     }
 }
 

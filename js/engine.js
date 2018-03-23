@@ -103,7 +103,7 @@ var Engine = (function(global) {
         allTreasure.forEach(function(treasure) { //宝藏
             treasure.update(dt);
         });
-        document.getElementById('score').textContent = score;
+        document.querySelector('.score').textContent = score;
     }
 
     /* This function initially draws the "game level", it will then call

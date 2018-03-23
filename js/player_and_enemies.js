@@ -126,6 +126,9 @@ function win(){
     console.log('win!');
     clearInterval(int); //停止计时
     gamePause = true;
+    document.querySelector("#congratulations div p .time").innerText = time;
+    document.querySelector('#congratulations div p .score').textContent = score;
+    document.querySelector('#congratulations').setAttribute('class', 'showWindow');
 }
 
 
