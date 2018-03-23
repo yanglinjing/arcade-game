@@ -1,17 +1,16 @@
 //收藏品：可以向游戏中添加宝藏，使玩家能够收集这些宝藏
 var locations = [];
 
-var Treasure = function(pic){
+var Treasure = function(pic, i){
   this.sprite = pic;//图片位置
-  this.x = pickOneLoc(0);
-  this.y = pickOneLoc(1);
+  this.x = pickOneLoc(i)[0];
+  this.y = pickOneLoc(i)[1];
 }
 
 function pickOneLoc(i){
     treasureLoc();
     shuffle(locations);
-    console.log(locations);
-    return location[i];
+    return locations[i];
 }
 
 function treasureLoc(){
