@@ -1,3 +1,15 @@
 body {
     text-align: center;
 }
+
+.settings {
+    margin: 0 auto;
+    display: flex;
+    width: 505px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pause {
+    cursor: pointer;
+}

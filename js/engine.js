@@ -82,8 +82,10 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
-        // checkCollisions();
+        if (!gamePause){ //我加入了暂停功能
+          updateEntities(dt);
+          // checkCollisions();
+        }
     }
 
     /* This is called by the update function and loops through all of the
