@@ -98,6 +98,9 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        allTreasure.forEach(function(treasure) { //宝藏
+            treasure.update(dt);
+        });
     }
 
     /* This function initially draws the "game level", it will then call
@@ -155,6 +158,11 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+
+        allTreasure.forEach(function(treasure) { //宝藏画在最底层
+             treasure.render();
+        });
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
@@ -179,7 +187,15 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        //加入宝藏图片
+        'images/heart.png',
+        'images/key.png',
+        'images/rock.png',
+        'images/gem_blue.png',
+        'images/gem_green.png',
+        'images/gem_orange.png',
+        'images/star.png',
     ]);
     Resources.onReady(init);
 

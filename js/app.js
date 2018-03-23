@@ -50,7 +50,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.collision = function() {
    if (this.x < player.x + 60 &&
        this.x + 100 > player.x &&
-       this.y < player.y + 76 &&
+       this.y < player.y + 70 &&
        this.y + 70 > player.y) {
          setTimeout(function(){
           console.log('catched!');
@@ -142,19 +142,19 @@ var player = new Player();
 
 // Place all enemy objects in an array called allEnemies 把所有的敌人对象放在一个叫allEnemies的数组
 var allEnemies = [
-//row 1
-new Enemy(62),
-new Enemy(62),
-new Enemy(62),
-//row 2
-new Enemy(145),
-new Enemy(145),
-new Enemy(145),
-//row 3
-new Enemy(228),
-new Enemy(228),
-new Enemy(228)
-];
+        //row 1
+        new Enemy(62),
+        new Enemy(62),
+        new Enemy(62),
+        //row 2
+        new Enemy(145),
+        new Enemy(145),
+        new Enemy(145),
+        //row 3
+        new Enemy(228),
+        new Enemy(228),
+        new Enemy(228)
+      ];
 
 // This listens for key presses and sends the keys to your 监听键盘按键，并把key传递到handleInput方法中
 // Player.handleInput() method. You don't need to modify this. 你无须更改此项
@@ -169,8 +169,9 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
     //The 【KeyboardEvent.keyCode】 read-only property represents a system and implementation dependent 【numerical code】 identifying the unmodified value of the pressed key.键盘上的每一个按键都对应一个数字，即keyboardEvent.keyCode：比如‘上箭头’对应38，该数字是事件自动获取的。所以对象allowedKeys[38]会返回‘up’。
 
-    player.update();
-
+    allTreasure.forEach(function(treasure) { //吃宝藏
+         treasure.getTreasure();
+    });
 });
 
 
