@@ -25,9 +25,12 @@ body {
     cursor: default;
 }
 
+canvas {
+  z-index:1;
+}
+
 /* 遮罩层: z-index数字大的在上面，position: absolute；两个层必须是平级（同一个div的娃） */
 #congratulations {
-  margin: 0 auto;
   border: 1px solid #aa7ecd;
   border-radius: 10px;
   background: url('../images/geometry2.png');
@@ -35,11 +38,16 @@ body {
   width: 300px;
   height: 270px;
   padding: 40px;
+  opacity: 0.8;
   align-items: center;
   text-align: center;
-  opacity:0.8;
-  z-index:2;
+  z-index: 2;
   position: absolute;
+  /*绝对布局，让left和top都是50%，这在水平方向上让div的最左与屏幕的最左相距50%，垂直方向上一样，所以再用transform向左（上）平移它自己宽度（高度）的50%，也就达到居中效果了*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /*  margin: 0 auto;在这里不好用，不知道为啥*/
 }
 
 .showWindow {

@@ -3,7 +3,7 @@ myTime();
 var score = 100, //score在engin.js中的update中更新
     gamePause = false;
 
-//换头像???
+//换头像
 var face = 'images/char-boy.png';
 document.querySelector('select').addEventListener('change', function(){
     face = this.value;
