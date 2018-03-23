@@ -44,7 +44,7 @@ var myTreasureNum = 0;
 Treasure.prototype.getTreasure = function(){
     if (this.x === player.x && this.y === player.y){
         myTreasureNum +=1;
-        this.y = -100;
+        this.y = -72;
         switch (myTreasureNum) {
             case 1:
               this.x = 0;
