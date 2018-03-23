@@ -34,17 +34,42 @@ function shuffle(array) {
     return array;
 }
 
-Treasure.prototype.update = function(dt){
-
-};
+Treasure.prototype.update = function(dt){};
 
 Treasure.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+var myTreasureNum = 0;
 Treasure.prototype.getTreasure = function(){
     if (this.x === player.x && this.y === player.y){
-        console.log('eat');
+        myTreasureNum +=1;
+        this.y = -100;
+        switch (myTreasureNum) {
+            case 1:
+              this.x = 0;
+              break;
+            case 2:
+              this.x = 70;
+              break;
+            case 3:
+              this.x = 140;
+              break;
+            case 4:
+              this.x = 210;
+              break;
+            case 5:
+              this.x = 280;
+              break;
+            case 6:
+              this.x = 350;
+              break;
+            case 7:
+              this.x = 420;
+              break;
+        }
+        score +=20;
+        console.log('eat' + myTreasureNum + 'score' +score);
     }
 }
 

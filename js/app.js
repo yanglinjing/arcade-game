@@ -1,3 +1,6 @@
+var score = 100,
+    pause = false;
+
 /*
 Enemy 函数，它通过以下操作初始化 Enemy：
 1. 加载图片:通过将 this.sprite 设为 images 文件夹（已经提供）中的相应图片来加载图片
@@ -12,7 +15,7 @@ var Enemy = function(y) {
     this.sprite = 'images/enemy-bug.png';
 
     // Variables applied to each of our instances go here 运用到实例的变量
-    this.x = randomInt(-150, -800); //随机生成数字
+    this.x = randomInt(-110, -800); //随机生成数字
     this.y = y; //y始终是不变的
     this.speed = randomInt(70, 130);
 
@@ -40,7 +43,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt; //而y值始终不变
 
     if (this.x > 800){ //让小虫子循环跑
-        this.x = randomInt(-150, -800) + this.speed * dt;
+        this.x = randomInt(-110, -800) + this.speed * dt;
     }
     this.collision();//调用碰撞函数
 };
@@ -49,14 +52,13 @@ Enemy.prototype.update = function(dt) {
 //2D_collision_detection来自：https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
 Enemy.prototype.collision = function() {
    if (this.x < player.x + 60 &&
-       this.x + 100 > player.x &&
+       this.x + 80 > player.x &&
        this.y < player.y + 70 &&
-       this.y + 70 > player.y) {
-         setTimeout(function(){
-          console.log('catched!');
+       this.y + 50 > player.y) {
           player.x = 202;
           player.y = 405;
-        }, 200);
+          score -= 10;
+          console.log('catched!' + score);
    }
 }
 
@@ -86,9 +88,7 @@ This class requires an update(), render() and a handleInput() method.
  */
 
 //Player 函数的 update 方法(在engine.js第50行直接调用)
-Player.prototype.update = function(dt){
-
-};
+Player.prototype.update = function(dt){};
 
 //Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）
 Player.prototype.render = function() {
