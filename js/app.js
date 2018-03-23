@@ -40,7 +40,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt; //而y值始终不变
 
     if (this.x > 800){ //让小虫子循环跑
-        this.x = -400 + this.speed * dt;
+        this.x = randomInt(-150, -800) + this.speed * dt;
     }
     this.collision();//调用碰撞函数
 };
@@ -48,15 +48,15 @@ Enemy.prototype.update = function(dt) {
 //enmenies碰撞player的部分
 //2D_collision_detection来自：https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
 Enemy.prototype.collision = function() {
-   if (this.x < player.x + 66 &&
-       this.x + 97 > player.x &&
-       this.y < player.y + 70 &&
+   if (this.x < player.x + 60 &&
+       this.x + 100 > player.x &&
+       this.y < player.y + 76 &&
        this.y + 70 > player.y) {
-          setTimeout(function(){
-              console.log('catched!');
-              player.x = 202;
-              player.y = 405;
-          }, 200)
+         setTimeout(function(){
+          console.log('catched!');
+          player.x = 202;
+          player.y = 405;
+        }, 200);
    }
 }
 
@@ -153,7 +153,7 @@ new Enemy(145),
 //row 3
 new Enemy(228),
 new Enemy(228),
-new Enemy(228),
+new Enemy(228)
 ];
 
 // This listens for key presses and sends the keys to your 监听键盘按键，并把key传递到handleInput方法中
