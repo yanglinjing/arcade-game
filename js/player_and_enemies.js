@@ -125,6 +125,7 @@ Player.prototype.handleInput = function (key) {
 function win(){
     console.log('win!');
     clearInterval(int); //停止计时
+    gamePause = true;
 }
 
 

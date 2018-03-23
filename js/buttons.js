@@ -3,7 +3,7 @@ myTime();
 var score = 100,
     gamePause = false;
 
-//换头像，参考：https://blog.csdn.net/Kang_xiong/article/details/52893610?locationNum=14&fps=1
+//换头像???
 document.querySelector('select').addEventListener('change', function(){
     var a = this.value;
     console.log(a);
@@ -15,13 +15,23 @@ document.querySelector('select').addEventListener('change', function(){
 */
 
 //暂停
-document.getElementById('pause').addEventListener('click', function(){
+let pause = document.getElementById('pause');
+pause.addEventListener('click', function(){
     gamePause = true;
+    pause.setAttribute('src', 'images/pause_gray.svg');
+    pause.setAttribute('class', 'unavailable');
+    start.setAttribute('src', 'images/start.svg');
+    start.setAttribute('class', 'available');
 });
 
 //继续
-document.getElementById('start').addEventListener('click', function(){
+let start = document.getElementById('start');
+start.addEventListener('click', function(){
     gamePause = false;
+    start.setAttribute('src', 'images/start_gray.svg');
+    start.setAttribute('class', 'unavailable');
+    pause.setAttribute('src', 'images/pause.svg');
+    pause.setAttribute('class', 'available');
 });
 
 //重新开始游戏
