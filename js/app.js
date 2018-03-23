@@ -1,6 +1,7 @@
 var score = 100,
     pause = false;
 
+
 /*
 Enemy 函数，它通过以下操作初始化 Enemy：
 1. 加载图片:通过将 this.sprite 设为 images 文件夹（已经提供）中的相应图片来加载图片
@@ -172,6 +173,7 @@ document.addEventListener('keyup', function(e) {
     allTreasure.forEach(function(treasure) { //吃宝藏
          treasure.getTreasure();
     });
+
 });
 
 

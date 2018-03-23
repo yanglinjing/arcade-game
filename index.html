@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-          abd
+      <input id="play" type="button" value="Play Again" />
+      <input id="close" type="button" value="Close" />
+
+      <!--换头像，来自：http://www.jb51.net/article/71195.htm-->
+      <select onchange="document.images['face'].src=options[selectedIndex].value;">
+      <option value="images/char-boy.png">00</option>
+      <option value="images/char-cat-girl.png">01</option>
+      <option value="images/char-horn-girl.png">02</option>
+      <option value="images/char-pink-girl.png">03</option>
+      <option value="images/char-princess-girl.png">04</option>
+      </select>
+
+      <img src="images/char-boy.png" id="face">
+
+      <p>Score: <span id="score"></span></p>
+
     <header>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
