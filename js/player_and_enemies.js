@@ -86,6 +86,7 @@ This class requires an update(), render() and a handleInput() method.
 
 //Player 函数的 update 方法(在engine.js第50行直接调用)
 Player.prototype.update = function(dt){
+    this.sprite = face;
 };
 
 //Player 函数的 render 方法（使用 Enemy 的 render 方法的代码）

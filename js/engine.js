@@ -199,6 +199,12 @@ var Engine = (function(global) {
         'images/gem_green.png',
         'images/gem_orange.png',
         'images/star.png',
+        //加入小人图片
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

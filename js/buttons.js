@@ -4,9 +4,10 @@ var score = 100, //score在engin.js中的update中更新
     gamePause = false;
 
 //换头像???
+var face = 'images/char-boy.png';
 document.querySelector('select').addEventListener('change', function(){
-    var a = this.value;
-    console.log(a);
+    face = this.value;
+    console.log(face);
 });
 
 /*
