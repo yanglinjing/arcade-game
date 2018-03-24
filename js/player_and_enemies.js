@@ -55,7 +55,7 @@ Enemy.prototype.collision = function() {
           player.x = 202;
           player.y = 405;
           score -= 10;
-          console.log('catched!' + score);
+          //console.log('catched! ' + score);
    }
 }
 

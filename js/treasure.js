@@ -69,7 +69,7 @@ Treasure.prototype.getTreasure = function(){
               break;
         }
         score +=20;
-        console.log('eat' + myTreasureNum + 'score' +score);
+        //console.log('eat' + myTreasureNum + 'score' +score);
     }
 }
 
