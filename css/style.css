@@ -2,11 +2,10 @@ html {
     box-sizing: border-box;
 }
 
-
 body {
     text-align: center;
     background: #ffffff url('../images/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Open Sans', sans-serif;;
 }
 
 .settings {
@@ -31,13 +30,13 @@ canvas {
 
 /* 遮罩层: z-index数字大的在上面，position: absolute；两个层必须是平级（同一个div的娃） */
 #congratulations {
-  border: 1px solid #aa7ecd;
+  border: 1px solid #8c7af7;
   border-radius: 10px;
   background: url('../images/geometry2.png');
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   width: 300px;
-  height: 270px;
-  padding: 40px;
+  height: 330px;
+  padding: 40px 20px 40px;
   opacity: 0.8;
   align-items: center;
   text-align: center;
@@ -48,6 +47,12 @@ canvas {
   top: 50%;
   transform: translate(-50%,-50%);
   /*  margin: 0 auto;在这里不好用，不知道为啥*/
+}
+
+h1 {
+  color: #1e05b4;
+  font-family: 'Tangerine', serif;
+  font-size: 60px;
 }
 
 .showWindow {
@@ -71,10 +76,18 @@ canvas {
   height:40px;
   width: 100px;
   border-radius:4px;
-  border:1px solid #aa7ecd;
-  color:#8d15ee;
+  border:1px solid #8c7af7;
+  color:#2501ff;
   display:block;
   outline:0;
   padding:0 1em;
   cursor: pointer;
+}
+
+/*烟花效果*/
+.firworks{
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    z-index: 3;
 }
