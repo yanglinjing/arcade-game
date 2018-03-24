@@ -34,11 +34,11 @@ function Fireworks(Div,x,y){
         function moving(){
             i++;
 
-            Div.style.left = Div.offsetLeft+speedX+"px";
-            Div.style.top = Div.offsetTop+speedY+i+"px";   //当i+speedY>0时,烟花朝下运动。
+            Div.style.left = Div.offsetLeft + speedX + "px";
+            Div.style.top = Div.offsetTop + speedY + i + "px";   //当i+speedY>0时,烟花朝下运动。
 
-            if (Div.offsetLeft+Div.offsetWidth>window.innerWidth || Div.offsetLeft<2 ||
-                Div.offsetTop+Div.offsetHeight>window.innerHeight || Div.offsetTop<2 ){
+            if (Div.offsetLeft + Div.offsetWidth > window.innerWidth || Div.offsetLeft < 2 ||
+                Div.offsetTop + Div.offsetHeight > window.innerHeight || Div.offsetTop< 2 ){
                     Div.remove();       //移动出可视区域记得删除div和清除定时器
                     clearInterval(time1);
             }
@@ -49,8 +49,8 @@ function Fireworks(Div,x,y){
 //添加到player_and_enemies.js的win()中
 function runFirework(){
     let x=400, y=300;
-    for(let i=0;i<80;i++){       //随机烟花的数量
-        randomLoc(x, y);
+//for循环里是一颗完整的烟花
+    for(let i=0;i<80;i++){       //一颗烟花所散发的火星的数量
         const div=document.createElement("div");
         let b=new Fireworks(div, x, y);
         b.move();
