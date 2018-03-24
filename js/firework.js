@@ -1,6 +1,6 @@
 /*
  *烟花特效
- *来自:http://blog.csdn.net/wcslb/article/details/53142221
+ *参考:http://blog.csdn.net/wcslb/article/details/53142221
  */
 
 
@@ -15,7 +15,7 @@ function randomColor(){
 }
 
 //创建一个制造烟花的构造函数，第一个参数为元素，第二参数为初始x轴位置，第三参数为y轴位置。
-function Fireworks(Div,x,y){
+function FireworkUnit(Div,x,y){
     document.body.appendChild(Div);              //添加一个div
 
     Div.style.backgroundColor = randomColor();   //给烟花添加背景色
@@ -46,16 +46,33 @@ function Fireworks(Div,x,y){
     }
 }
 
+//-------------------以下是我写的-------------
+var OneFirework = function(){
+    this.x = randomX();
+    this.y = randomY();
+}
+
+OneFirework.prototype.display = function(){
+  //for循环里是一颗完整的烟花
+  for(let i=0;i<80;i++){       //一颗烟花所散发的火星的数量
+      const div = document.createElement("div");
+      let b = new FireworkUnit(div, this.x, this.y);
+      b.move();
+  }
+}
+
 //添加到player_and_enemies.js的win()中
-function runFirework(){
-    let x=400, y=300;
-//for循环里是一颗完整的烟花
-    for(let i=0;i<80;i++){       //一颗烟花所散发的火星的数量
-        const div=document.createElement("div");
-        let b=new Fireworks(div, x, y);
-        b.move();
+function displayFireworks() {
+    let t = 0;
+    for (let i=0; i<10; i++){
+        setTimeout(function(){
+          const oneFirework = new OneFirework();
+          oneFirework.display();
+        }, t)
+        t += 1000;
     }
 }
+
 
 /* 原作者的鼠标点击事件
 document.onclick=function (e){
@@ -69,16 +86,19 @@ document.onclick=function (e){
 */
 
 
-//生成网页随机坐标：来源http://blog.csdn.net/dyushuo6230/article/details/7285313
-function randomLoc(x, y){
+/*
+生成网页随机坐标：
+参考：http://blog.csdn.net/dyushuo6230/article/details/7285313
+*/
 
-    //右下边求出图片起始点最大X和Y的坐标值
-    const w=window.screen.availWidth
-    const h=window.screen.availHeight;
+function randomX(){
+    const w = window.screen.availWidth
+    let x = randomInt(0, w);
+    return x;
+}
 
-    //随机产生坐标x和坐标Y的值（都是从零到起始点最大X和Y的坐标值）
-    x = randomInt(0, w);
-    y = randomInt(0, h);
-
-    return x, y;
+function randomY(){
+    const h = window.screen.availHeight;
+    let y = randomInt(0, h);
+    return y;
 }

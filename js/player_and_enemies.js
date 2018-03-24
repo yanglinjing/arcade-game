@@ -131,7 +131,7 @@ function win(){
     document.querySelector('#congratulations div p .score').textContent = score;
     document.querySelector('#congratulations').setAttribute('class', 'showWindow');
     allEnemies = [];
-    runFirework();
+    displayFireworks();
 }
 
 
