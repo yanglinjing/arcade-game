@@ -7,7 +7,7 @@ var score = 100, //score在engin.js中的update中更新
 var face = 'images/char-boy.png';
 document.querySelector('select').addEventListener('change', function(){
     face = this.value;
-    console.log(face);
+    this.blur();//选择新头像后，从选择框移除焦点
 });
 
 /*
@@ -54,8 +54,10 @@ document.getElementById('close').addEventListener('click', function(){
  *来自:https://zhidao.baidu.com/question/2077864432758305548.html
  */
 
+//reviewer:由于 timer() 函数会不断重复的被调用，更推荐将获取网页元素移到外部以避免不太必要的重复获取
 function myTime() {
     let sec=0;
+    timerElm = document.querySelector(".time");// 将获取元素保存在 timer() 函数外面
     int = setInterval(timer, 1000);
     function timer() {
         sec++;
@@ -63,8 +65,7 @@ function myTime() {
         date.setSeconds(sec);
         let h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
         time = two_char(h) + ":" + two_char(m) + ":" + two_char(s);
-
-        document.querySelector(".time").innerText = time; //网页元素
+        timerElm.innerText = time; //网页元素
     }
 }
 

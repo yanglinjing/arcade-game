@@ -59,6 +59,13 @@ Enemy.prototype.collision = function() {
    }
 }
 
+/**
+ 如果有兴趣给游戏添加一些音效，也许是一个不错的想法哦，让你的游戏更具特色~
+参考：
+const audio = new Audio('music.mp3')
+audio.play()
+*/
+
 // Draw the enemy on the screen, required method for game把敌人显示在屏幕上
 Enemy.prototype.render = function() {
     // ctx.drawImage() 方法有三个参数：一张图片、x 坐标和 y 坐标
