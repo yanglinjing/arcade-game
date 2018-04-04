@@ -1,6 +1,15 @@
-frontend-nanodegree-arcade-game
-===============================
+#Arcade Game
+This is one of my assignments for the Front-and-End NanoDegree at Udacity.
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+##About the Game
+It is a small game to be played on the webpage. The goal of the game is to let the little boy/girl safely walk to the river.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+###Score
+If caught by an enemy, he/she will be moved to the starting point with your score decreases 10 (original is 100).
+If a treasure is eaten, your score will increase 20.
+
+###Pause/Refresh
+There are three buttons on the left-top corner, which you might need when you wanna temporarily stop the game to grab a drink, or start the game from the very beginning.
+
+###Choose a Figure
+You can change the figure by the selector on the right-top corner! Some cute figures are available! Have a look!
